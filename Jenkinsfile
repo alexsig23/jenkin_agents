@@ -14,12 +14,12 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                  sh 'terraform plan'
-                 sh 'terraform apply -y'
+                 sh 'terraform apply --auto-approve'
             }
         }
         stage('Terraform Destroy') {
             steps {
-                 sh 'terraform destroy -y'
+                 sh 'terraform destroy --auto-approve'
                  echo 'Created, Destroyed..'
             }        
         }
