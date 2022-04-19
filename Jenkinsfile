@@ -9,10 +9,10 @@ pipeline {
         stage('Terraform Init') {
             steps {
                  sh 'terraform init -input=false'
-                 sh 'terraform plan'
             }
         stage('Terraform Apply') {
             steps {
+                 sh 'terraform plan'
                  sh 'terraform apply -y'
             }
         stage('Terraform Destroy') {
