@@ -11,6 +11,15 @@ pipeline {
                  sh 'terraform init -input=false'
                  sh 'terraform plan'
             }
+        stage('Terraform Apply') {
+            steps {
+                 sh 'terraform apply -y'
+            }
+        stage('Terraform Destroy') {
+            steps {
+                 sh 'terraform destroy -y'
+                 echo 'Created, Destroyed..'
+            }        
         }
 	}
 }
