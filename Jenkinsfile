@@ -1,9 +1,16 @@
 pipeline {
     agent any
+environment {
+    withCredentials([file(credentialsId: 'alexgaskell-sandbox', variable: 'GC_KEY')]) {
+    sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
+    sh("gcloud container clusters get-credentials prod --zone europe-west2-b --project ${project}")
+  }
+}
  stages {
         stage('Start') {
             steps {
                 echo 'Hello World on Development Branch'
+                
             }
       	}
         stage('Terraform Init') {
